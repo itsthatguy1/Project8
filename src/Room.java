@@ -25,7 +25,6 @@ public class Room
     private Scanner reader;
     private File room;
     private static final int MAX_PERCENT = 100;
-    private static final int MIN_PERCENT = 0;
 
     /**
      * Constructor of class Room
@@ -70,7 +69,7 @@ public class Room
      */
     public void determineOccuppied()
     {
-        int percent = rand.nextInt(MAX_PERCENT - MIN_PERCENT + 1) + MIN_PERCENT;
+        int percent = rand.nextInt(MAX_PERCENT) + 1;
         if (percent <= chanceOccupied)
         {
             roomOccupied = true;
@@ -86,7 +85,7 @@ public class Room
      */
     public void determineHasItem()
     {
-        int percent = rand.nextInt(MAX_PERCENT - MIN_PERCENT + 1) + MIN_PERCENT;
+        int percent = rand.nextInt(MAX_PERCENT) + 1;
         if (percent <= chanceItem)
         {
             roomHasItem = true;
@@ -139,7 +138,7 @@ public class Room
             System.out.println("You must enter a valid room.");
             moveTo = reader.nextLine();
         }
-        int percent = rand.nextInt(MAX_PERCENT - MIN_PERCENT + 1) + MIN_PERCENT;
+        int percent = rand.nextInt(MAX_PERCENT) + 1;
         if (percent <= RANDOM_ROOM_PERCENT)
         {
             int nextRoomNumber = rand.nextInt(NUMEBER_ROOMS - 1 + 1) + 1;
