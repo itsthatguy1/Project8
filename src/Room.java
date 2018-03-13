@@ -141,17 +141,21 @@ public class Room
         int percent = rand.nextInt(MAX_PERCENT) + 1;
         if (percent <= RANDOM_ROOM_PERCENT)
         {
-            int nextRoomNumber = rand.nextInt(NUMEBER_ROOMS - 1 + 1) + 1;
+            int nextRoomNumber = rand.nextInt(NUMEBER_ROOMS) + 1 ;
             switch (nextRoomNumber)
             {
-                case 1: moveTo = "Hall";
-                break;
-                case 2: moveTo = "Dining Room";
-                break;
-                case 3: moveTo = "Kitchen";
-                break;
-                case 4: moveTo = "Library";
-                break;
+                case 1:
+                    moveTo = "Hall";
+                    break;
+                case 2:
+                    moveTo = "Dining Room";
+                    break;
+                case 3:
+                    moveTo = "Kitchen";
+                    break;
+                case 4:
+                    moveTo = "Library";
+                    break;
             }
         }
         return moveTo;
