@@ -15,7 +15,6 @@ public class Room
     private String connection2;
     private String connection3;
     private String connection4;
-    private String moveTo;
     private int roomNumber;
     private int chanceOccupied;
     private int chanceItem;
@@ -64,10 +63,6 @@ public class Room
         connection2 = input.nextLine();
         connection3 = input.nextLine();
         connection4 = input.nextLine();
-        System.out.println(connection1);
-        System.out.println(connection2);
-        System.out.println(connection3);
-        System.out.println(connection4);
     }
 
     /**
@@ -76,7 +71,7 @@ public class Room
     public void determineOccuppied()
     {
         int percent = rand.nextInt(MAX_PERCENT - MIN_PERCENT + 1) + MIN_PERCENT;
-        if (percent >= chanceOccupied)
+        if (percent <= chanceOccupied)
         {
             roomOccupied = true;
         }
@@ -92,7 +87,7 @@ public class Room
     public void determineHasItem()
     {
         int percent = rand.nextInt(MAX_PERCENT - MIN_PERCENT + 1) + MIN_PERCENT;
-        if (percent >= chanceItem)
+        if (percent <= chanceItem)
         {
             roomHasItem = true;
         }
@@ -136,19 +131,29 @@ public class Room
      */
     public String moveTo()
     {
-        moveTo = reader.nextLine();
+        final int RANDOM_ROOM_PERCENT = 5;
+        final int NUMEBER_ROOMS = 4;
+        String moveTo = reader.nextLine();
+        while (!moveTo.equals(connection1) && !moveTo.equals(connection2) && !moveTo.equals(connection3) && !moveTo.equals(connection4) || moveTo.equals("None"))
+        {
+            System.out.println("You must enter a valid room.");
+            moveTo = reader.nextLine();
+        }
         int percent = rand.nextInt(MAX_PERCENT - MIN_PERCENT + 1) + MIN_PERCENT;
-        if (percent == 1)
+        if (percent <= RANDOM_ROOM_PERCENT)
         {
-            moveTo = "Hall";
-        }
-        if (percent == 2)
-        {
-            moveTo = "Dining Room";
-        }
-        if (percent == 3)
-        {
-            moveTo = "Kitchen";
+            int nextRoomNumber = rand.nextInt(NUMEBER_ROOMS - 1 + 1) + 1;
+            switch (nextRoomNumber)
+            {
+                case 1: moveTo = "Hall";
+                break;
+                case 2: moveTo = "Dining Room";
+                break;
+                case 3: moveTo = "Kitchen";
+                break;
+                case 4: moveTo = "Library";
+                break;
+            }
         }
         return moveTo;
     }
